@@ -2,14 +2,22 @@ import json
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from bson import ObjectId
+import os
 app = Flask(__name__)
-client = MongoClient('mongodb+srv://harisbakhabarpk:7GJ9p6xebjgQgtjE@cluster0.ybov0y1.mongodb.net/')
+# Use the environment variable for the MongoDB URI
+mongo_uri = os.environ['MONGO_URI']
+print("mongo_uri ",mongo_uri)
+client = MongoClient(mongo_uri)
 db = client.testflask
 employees = [
  { 'id': 1, 'name': 'Ashley' },
  { 'id': 2, 'name': 'Kate' },
  { 'id': 3, 'name': 'Joe' }
 ]
+
+
+
+
 
 
 def serialize_doc(doc):
